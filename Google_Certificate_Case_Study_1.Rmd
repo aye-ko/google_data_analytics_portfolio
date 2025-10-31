@@ -1,0 +1,151 @@
+---
+title: "Cyclistic Bike-Share Analysis"
+author: "Onyedikachukwu Okonkwo"
+date: "`r Sys.Date()`"
+output: html_document
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,warning = FALSE, message = FALSE)
+options(repos = c(CRAN = "https://cloud.r-project.org/"))
+library(tidyverse)
+library(ggplot2)
+library(scales)
+
+source("Google_Certificate_Case_Study_1.R")
+
+```
+## Executive Summary
+
+This analysis examines usage patterns between casual riders and annual members of Cyclistic bike-share to inform marketing strategies for converting casual riders into annual members.
+
+**Key Findings:**
+- Casual riders take longer trips (22.6 min avg) but members ride 12x more frequently
+- Members peak on weekdays, casuals peak on weekends
+- Casuals take round trips 8.8x more often than members
+
+These patterns suggest casual riders use bikes for leisure/recreation while members use them for daily commuting.
+
+---
+
+## Business Question
+
+**How do annual members and casual riders use Cyclistic bikes differently?**
+
+This analysis uses Q1 2019 and Q1 2020 Divvy trip data (770,000+ rides) to identify behavioral differences between Casuals, and Members that can inform targeted marketing campaigns.
+
+---
+
+## Finding 1: Duration vs. Frequency
+
+Casual riders take significantly longer trips, but members ride much more frequently.
+```{r duration-comparison}
+ggplot(ride_length_comparison, aes(x = member_casual, y = avg_ride_time, fill = member_casual)) +
+  geom_col() +
+  labs(
+    title = "Average Ride Duration: Casual vs Member",
+    x = "Rider Type",
+    y = "Average Duration (minutes)",
+    fill = "Rider Type"
+  ) +
+  theme_minimal() +
+  scale_fill_manual(values = c("casual" = "#FF6B6B", "member" = "#4ECDC4"))
+
+```
+
+**Insight:** Casual riders average 22.6 minutes per trip compared to members' 10.8 minutes, suggesting leisurely rides. However, members take 714,215 total trips versus casuals' 58,316 trips - a 12x difference indicating daily usage patterns.
+
+---
+
+## Finding 2: Weekly Patterns
+
+Members and casuals show opposite weekly patterns.
+```{r weekly-patterns}
+ggplot(day_of_week_patterns, aes(x = day_name, y = n, fill = member_casual)) +
+  geom_col(position = "dodge") +
+  labs(
+    title = "Ride Patterns Throughout the Week",
+    x = "Day of Week",
+    y = "Number of Rides",
+    fill = "Rider Type"
+  ) +
+  theme_minimal() +
+  scale_fill_manual(values = c("casual" = "#FF6B6B", "member" = "#4ECDC4")) +
+  scale_x_discrete(limits = day_names)+
+  scale_y_continuous(labels = scales::label_number( scale = 1/1000, suffix = "K"))
+
+```
+
+**Insight:** Members peak on weekdays (Tuesday: 127K rides) and drop on weekends, consistent with commuting behavior. Casuals peak on weekends (Sunday: 15K rides) and stay low during weekdays, consistent with recreational use.
+
+---
+
+## Finding 3: Round Trip Behavior
+
+Casuals are far more likely to return to their starting station.
+```{r round-trips}
+round_trip_viz <- round_trip_pattern %>%
+  filter(round_trip == TRUE)
+
+ggplot(round_trip_viz, aes(x = member_casual, y = percentage, fill = member_casual)) +
+  geom_col() +
+  labs(
+    title = "Percentage of Trips That Are Round Trips",
+    x = "Rider Type",
+    y = "Percentage of Total Rides",
+    fill = "Rider Type"
+  ) +
+  theme_minimal() +
+  scale_fill_manual(values = c("casual" = "#FF6B6B", "member" = "#4ECDC4")) +
+  geom_text(aes(label = paste0(round(percentage, 1), "%")), vjust = -0.5)
+
+```
+
+**Insight:** 12.1% of casual trips are round trips compared to only 1.4% of member trips. This supports the leisure vs. commute hypothesis - casuals explore and return, members travel point-to-point.
+
+---
+
+## Finding 4: Total Usage
+
+Members dominate total ridership.
+```{r total-rides}
+ggplot(ride_length_comparison, aes(x= member_casual , y = total_rides , fill = member_casual)) +
+  geom_col() +
+  labs(
+    title = "Total Number of Rides: Casual vs Member",
+    x = "Rider Type",
+    y = "Total Rides",
+    fill = "Rider Type"
+  ) +
+  theme_minimal() +
+  scale_fill_manual(values = c("casual" = "#FF6B6B", "member" = "#4ECDC4")) +
+  scale_y_continuous(labels = scales::label_number(scale = 1/1000, suffix = "K")) +
+  geom_text(aes(label = scales::comma(total_rides)), vjust = -0.5)
+```
+
+**Insight:** With 714,215 trips versus 58,316, members account for 92% of total rides, making them the primary user base despite having shorter individual trip durations.
+
+---
+
+## Recommendations
+
+Based on these behavioral differences, marketing strategies to convert casual riders should consider:
+
+1. **Value Proposition Challenge:** Casuals use bikes for occasional leisure, not daily commuting. Traditional annual memberships may not appeal to this usage pattern.
+
+2. **Potential Strategies:**
+   - Create weekend/seasonal pass options tailored to leisure riders
+   - Develop campaigns showing how bikes can replace short commutes
+   - Offer trial periods that encourage behavioral change toward weekday usage
+
+3. **Target Messaging:** Emphasize flexibility, cost savings for weekend warriors, or lifestyle benefits of incorporating bikes into daily routines.
+
+---
+
+## Methodology
+
+**Data:** Divvy Trips Q1 2019 & Q1 2020 (combined dataset)  
+**Tools:** R, tidyverse, ggplot2  
+**Process:** Data cleaning, outlier removal (rides <1 min or >60 min), comparative analysis  
+**Sample Size:** 772,531 rides analyzed
+
+---
