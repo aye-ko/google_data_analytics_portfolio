@@ -48,6 +48,7 @@ Guiding Questions:
 Where is the data located?
 
 https://www.kaggle.com/datasets/onyedikako/divvy-trips
+
 **ORIGINAL DATASET:** https://divvy-tripdata.s3.amazonaws.com/index.html
 (Houses all Quarterly Reports)
 
