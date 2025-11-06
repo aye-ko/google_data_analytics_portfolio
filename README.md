@@ -28,7 +28,9 @@ The manager's goal is to design a marketing strategy that converts casual riders
 **Ask:**
 
 How do annual members use bikes differently from casual riders?
+
 Why would Casual riders buy a yearly membership?
+
 How can Cyclistic use digital media to influence casual riders to become members?  
 
 
@@ -86,38 +88,60 @@ A description of all data sources.
 The Data is from Divvy Quarter reports. 
 
 Limitations of Data:
-What are the limits of the analysis? The data does not include individual riders' usage.  Therefore, the data will focus on aggregate groups rather than individual patterns. 
+
+What are the limits of the analysis? 
+
+The data does not include individual riders' usage.  Therefore, the data will focus on aggregate groups rather than individual patterns. 
 
 **Process**
 
 Tools: Use R Studio to clean, organize, and visualize the data. 
-Ensure Data Integrity: Keep a backup of the original raw data
-Work only on copies of the data
+
+Ensure Data Integrity: Keep a backup of the original raw data;
+Work only on copies of the data.
+
 Steps to clean the data:
 
 •	Remove null spaces
+
 •	Check for spelling errors.
+
 •	Trim extra spaces
+
 •	Format the time to be in the HH:MM: SS
+
 •	Create a new column called ride_length to track the average ride_length of each group by subtracting the started_at from the ended_at.
+
 •	Ensure times are in minutes across the board
+
 •	Filter columns with the same start and end station as round_trips and store them in a new column
+
 •	Create a column called day_of_week and calculate the day of the week that each ride starts, 1= Sunday and 7= Saturday
+
 •	Organize data into temporary tables
+
 •	Create outlier_table for rides < 1 minute or > 60 minutes and > 120 minutes user probably forgot to return the bike. Compare which group falls mostly into these tables and hypothesize why.
 
 Verify Data is Clean and Ready to Analyze:
 
 •	Check for duplicate rows.
+
 •	Check for null values
+
 •	Check for the  appropriate length of values in each column
+
 •	Check if start times and end times make sense (end times cannot be less than start times. 
+
 •	Check for outliers like < 1 minute or > 120 minutes
-•	Flag outliers for analysis, for instance, to determine who cancels more, who keeps the bike the longest, and add them to a new table
+
+•	Flag outliers for analysis, for instance, to determine who cancels more, who keeps the bike the longest, and add them to a new table.
+
 •	Run summary statistics like min, max, and  mean values
+
 •	Check for ride times that are impossibly short or long
 
 Document Cleaning Process:
+
 Use R Markdown to document the whole process
 
 Key Task:
@@ -129,18 +153,27 @@ What will I calculate:
 
 Duration and Frequency:
 •	How long does each group ride?
+
 •	How often does each group ride?
+
 •	Which group rides for the longest time?
+
 •	When does each group ride the most, which time of day, and what day of the week?
+
 •	Which group rides the most on holidays? 
 
 
 Location Patterns:
 •	Which station is most popular for each group?
+
 •	Which group rides the farthest?
+
 •	Which group ends at the same station the most (round_trips)
+
 •	What percentage of rides are round-trip?
+
 •	What percentage of rides are one-way? 
+
 •	For one-way rides, average ride length per group. 
 
 Outliers:
@@ -153,15 +186,20 @@ Insights
 
 Key Task:
 •	Aggregate data so it is valuable and accessible
+
 •	Organize and format your data
+
 •	Perform calculations
+
 •	Identify trends and relationships
 
 Deliverable:
 A description of all data sources.
+
 Data is from Divvy Quarter reports. 
 
 Limitations of Data:
 What are the limits of the analysis? 
+
 The data does not include individual riders' usage.  Therefore, the data will focus on aggregate groups rather than individual patterns. 
 
