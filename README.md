@@ -46,14 +46,12 @@ Detail-oriented Executives.
 Guiding Questions: 
 
 Where is the data located?
-How is the data organized?
-Does the data ROCCC?
-How do I plan to address licensing, privacy, security, and accessibility?
-How did I verify the data’s integrity?
-How does it help me answer my question?
-Are there any problems with the data?	Data is from Divvy Quarter Reports
-Quarter reports organize data. 
 
+https://www.kaggle.com/datasets/onyedikako/divvy-trips
+**ORIGINAL DATASET:** https://divvy-tripdata.s3.amazonaws.com/index.html
+(Houses all Quarterly Reports)
+
+Does the data ROCCC?
 ROCCC
 Reliability- 
 Since it is a company report.
