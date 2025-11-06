@@ -1,5 +1,5 @@
 # google_data_analytics_portfolio
-**Goal: **
+**Goal:**
 
 Maximize the number of annual memberships by converting casual riders into yearly members. 
 
