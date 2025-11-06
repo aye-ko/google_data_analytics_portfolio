@@ -53,11 +53,13 @@ https://www.kaggle.com/datasets/onyedikako/divvy-trips
 (Houses all Quarterly Reports)
 
 Does the data ROCCC?
-ROCCC
+
 Reliability- 
 Since it is a company report.
+
 Original-
 This is company data—first party from the Cyclistic company archives. 
+
 Comprehensive- 
 It is not comprehensive due to privacy restrictions on customer data and credit card statements. 
 
