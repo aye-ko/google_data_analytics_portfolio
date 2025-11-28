@@ -1,7 +1,7 @@
-# google_data_analytics_portfolio
+# Bike Ride-Share Portfolio
 **Goal:**
 
-Maximize the number of annual memberships by converting casual riders into yearly members. 
+Maximise the number of annual memberships by converting casual riders into yearly members. 
 
 **Audience:**
 
