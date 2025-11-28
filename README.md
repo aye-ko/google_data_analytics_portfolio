@@ -1,4 +1,4 @@
-# Bike Ride-Share Portfolio
+# Bike Ride-Share User Analysis
 **Goal:**
 
 Maximise the number of annual memberships by converting casual riders into yearly members. 
